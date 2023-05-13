@@ -1,9 +1,15 @@
 #pragma once
+#include "Pomieszczenie.h"
+
 class Symulacja
 {
+	float czas;
+	Pomieszczenie* budynek;
+
 public:
-	void iteracja(float _zmienna);
-	void przebieg(int _zmienna1, float _zmienna2);
-	void zapis(char* _nazwa);
+	Symulacja();
+	void iteracja(float _deltaT); //deltaT - czas uplywajacy w tym kroku
+	void przebieg(int _liczbaIteracji, float _czasProbkowania);
+	void zapis(char* _nazwaPliku);
 };
 
