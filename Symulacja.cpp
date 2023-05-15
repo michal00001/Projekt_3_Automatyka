@@ -1,12 +1,12 @@
 #include "Symulacja.h"
 
 Symulacja::Symulacja() 
-	:czas(0.0)
+	:czas(0.0),
+	pokoj(2,5,8)
 {
-	Pomieszczenie pokoj(3.5,15,10.35);
-	budynek = &pokoj;
+	;
 };
-void Symulacja::iteracja(float _deltaT) 
+void Symulacja::iteracja(float _deltaT=1.0) 
 {
 	czas += _deltaT; //deltaT - czas uplywajacy w tym kroku
 }; 
@@ -14,9 +14,10 @@ void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania)
 {
 	for (int i = 0; i < _liczbaIteracji; i++)
 	{
-		iteracja(0.05);
-		budynek->aktualizuj();
-		
+		iteracja(_czasProbkowania);
+		pokoj.aktualizuj(czas);
+		std::cout<<"Czas:"<< czas << " Temperatura pomieszczenia " << pokoj.getTemperatura() << std::endl;
+		//std::cout << "Cieplo wchodzace " << budynek->getCieploWchodzace() << std::endl;
 
 	}
 };
