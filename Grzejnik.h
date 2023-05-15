@@ -1,7 +1,14 @@
 #pragma once
+#include <iostream>
+
 class Grzejnik
 {
-	float moc_nominalna; //[W]
-	float poziom_mocy; //[%]
+public:
+	Grzejnik(float _moc,float _poziom);
+	float wyemitowaneCieplo(float _czasProbkowania) { return mocNominalna * poziomMocy * _czasProbkowania; }; //[W]
+private:
+	float mocNominalna; //[W]
+	float poziomMocy; //[%] - liczba z zakresu 0 do 1;
+
 };
 

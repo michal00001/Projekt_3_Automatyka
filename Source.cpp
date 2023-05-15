@@ -2,5 +2,5 @@
 
 void main(void) {
 	Symulacja pierwsza;
-	pierwsza.przebieg(25,2);
+	pierwsza.przebieg(25,1);
 }

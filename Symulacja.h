@@ -1,6 +1,19 @@
 #pragma once
 #include "Pomieszczenie.h"
+#include "Grzejnik.h"
 #include <iostream>
+#include <vector>
+
+class Dane
+{
+private:
+	float czas;
+	float temperatura;
+public:
+	Dane(float _czas, float _temp)
+		:czas(_czas),
+		temperatura(_temp) {};
+};
 
 class Symulacja
 {
@@ -12,6 +25,8 @@ public:
 private:
 	float czas;
 	Pomieszczenie pokoj;
+	Grzejnik ogrzewacz;
+	std::vector<Dane> dane;
 
 	void iteracja(float _deltaT); //deltaT - czas uplywajacy w tym kroku
 
