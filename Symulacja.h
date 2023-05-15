@@ -3,9 +3,13 @@
 #include "Grzejnik.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
+
+
 
 class Dane
 {
+
 private:
 	float czas;
 	float temperatura;
@@ -13,7 +17,11 @@ public:
 	Dane(float _czas, float _temp)
 		:czas(_czas),
 		temperatura(_temp) {};
+	float getCzas() { return czas; };
+	float getTemperatura() { return temperatura; };
 };
+
+
 
 class Symulacja
 {
@@ -29,7 +37,6 @@ private:
 	std::vector<Dane> dane;
 
 	void iteracja(float _deltaT); //deltaT - czas uplywajacy w tym kroku
-
-
+	
 };
 

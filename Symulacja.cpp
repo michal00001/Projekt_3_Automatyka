@@ -1,5 +1,10 @@
 #include "Symulacja.h"
 
+std::ostream& operator<<(std::ostream& out, Dane& dane) {
+	out << dane.getCzas()<<";" << dane.getTemperatura() << std::endl;
+	return out;
+};
+
 Symulacja::Symulacja() 
 	:czas(0.0),
 	pokoj(2,5,8),
@@ -28,4 +33,14 @@ void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania)
 };
 void Symulacja::zapis(char* _nazwaPliku) 
 {
-	};
+	std::ofstream plik;
+	plik.open(_nazwaPliku, std::ofstream::out);
+	std::locale pol("pl_PL");
+	plik.imbue(pol);
+	plik << "Czas [s];Temperatura [*C]\n";
+	for (int i = 0; i < dane.size(); i++)
+	{
+		plik << dane[i];
+	}
+	plik.close();
+};
