@@ -19,9 +19,11 @@ float RegulatorPID::steruj(float _zadanaTemp, float _zmierzonaTemp, float _dt) {
 
 	/*obliczanie wartosci czesci rozniczkujacej*/
 	/**/
-	float de = (e - ePoprzednie) / _dt;
+	float de = 0;
+	de = (e - ePoprzednie) / _dt;//dlaczego ePoprzednie jest niezdefiniowany
 	float Ud = Kd * de;
 
+	/*przypisanie wartosci uchybu jako poprzedni uchyb do dalszych obliczen regulatora*/
 	ePoprzednie = e;
 
 	/*wartosc mocy = suma z poszczegolnych czlonow regulatora*/
