@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-
+#include "Regulator.h"
 
 
 class Dane
@@ -35,6 +35,7 @@ private:
 	Pomieszczenie pokoj;
 	Grzejnik ogrzewacz;
 	std::vector<Dane> dane;
+	Regulator* regulator;
 
 	void iteracja(float _deltaT); //deltaT - czas uplywajacy w tym kroku
 	
