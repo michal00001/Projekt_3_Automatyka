@@ -1,6 +1,9 @@
 #pragma once
 class Regulator
 {
-	virtual float steruj(float _temp, float _wartoscZmierzona, float _dt);
+public:
+	virtual float steruj(float _zadanaTemp, float _zmierzonaTemp, float _dt);	//_zadanaTemp - wartosc zadana temperatury,
+																				//_zmierzonaTemp - wartoœæ zmierzonej w tej chwili temperatury,
+																				//_dt - czas miêdzy pomiarami, "krok pomiarowy"
 };
 

@@ -29,7 +29,7 @@ public:
 	Symulacja();
 	void przebieg(int _liczbaIteracji, float _czasProbkowania);
 	void zapis(char* _nazwaPliku);
-
+	void setRegulator(Regulator* _regulator);
 private:
 	float czas;
 	Pomieszczenie pokoj;
