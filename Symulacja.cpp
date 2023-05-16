@@ -23,18 +23,25 @@ void Symulacja::iteracja(float _deltaT=1.0)
 
 void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania) 
 {
+	regulator->setGrzejnik(&ogrzewacz);
+	regulator->setPomieszczenie(&pokoj);
+
 	dane.reserve(_liczbaIteracji);
 
 	for (int i = 0; i < _liczbaIteracji; i++)
 	{
 		iteracja(_czasProbkowania);
 
-		ogrzewacz.setpoziomMocy(regulator->steruj(22.0, pokoj.getTemperatura(), _czasProbkowania));
+		//ogrzewacz.setpoziomMocy(regulator->steruj(22.0, pokoj.getTemperatura(), _czasProbkowania));
+
+		regulator->steruj(22.0, _czasProbkowania);
+
+		std::cout << "Wartosc nastawy dla grzejnika " << ogrzewacz.getpoziomMocy() << std::endl;
 		pokoj.dodajCieplo(ogrzewacz.wyemitowaneCieplo(_czasProbkowania));
 
 		std::cout <<"Czas:" << czas << " Cieplo wchodzace " << pokoj.getCieploWchodzace() << std::endl;
 		pokoj.aktualizuj(czas);
-		std::cout<<"Temperatura pomieszczenia " << pokoj.getTemperatura() << std::endl;
+		std::cout<<"Temperatura pomieszczenia " << pokoj.getTemperatura() << std::endl << std::endl;
 		
 		Dane wartosci(czas, pokoj.getTemperatura());
 		dane.push_back(wartosci);

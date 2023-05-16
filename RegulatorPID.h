@@ -4,7 +4,9 @@ class RegulatorPID :public Regulator
 {
 public:
 	RegulatorPID() :Kp((float)4.0), Ki((float)0.02), Kd((float)1.0),eCalka((float)0.0),ePoprzednie((float)0.0) {};
-	float steruj(float _zadanaTemp, float _zmierzonaTemp, float _dt);
+	//float steruj(float _zadanaTemp, float _zmierzonaTemp, float _dt);
+	void steruj(float _zadanaTemp, float _dt);
+
 private:
 	float Kp;
 	float Ki;

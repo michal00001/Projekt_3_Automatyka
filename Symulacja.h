@@ -9,10 +9,10 @@
 
 class Dane
 {
-
 private:
 	float czas;
 	float temperatura;
+
 public:
 	Dane(float _czas, float _temp)
 		:czas(_czas),
@@ -38,6 +38,7 @@ private:
 	Regulator* regulator;
 
 	void iteracja(float _deltaT); //deltaT - czas uplywajacy w tym kroku
-	
+	Symulacja(const Symulacja& obiekt);
+	Symulacja& operator=(const Symulacja& _obiekt);
 };
 
