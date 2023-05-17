@@ -7,8 +7,8 @@ std::ostream& operator<<(std::ostream& out, Dane& dane) {
 
 Symulacja::Symulacja()
 	:czas(0.0),
-	pokoj(2, 5, 8),
-	ogrzewacz(3500, 1000),
+	pokoj(3.5, 10, 12),
+	ogrzewacz(5200, 0),
 	regulator(nullptr)
 {};
 
@@ -23,6 +23,7 @@ void Symulacja::iteracja(float _deltaT=1.0)
 
 void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania) 
 {
+	if (regulator == nullptr) throw "Nie dodano instancji regulatora!";
 	regulator->setGrzejnik(&ogrzewacz);
 	regulator->setPomieszczenie(&pokoj);
 
@@ -54,10 +55,15 @@ void Symulacja::zapis(char* _nazwaPliku)
 	plik.open(_nazwaPliku, std::ofstream::out);
 	std::locale pol("pl_PL");
 	plik.imbue(pol);
-	plik << "Czas [s];Temperatura [*C]\n";
+	if(plik.good()){
+		plik << "Czas [s];Temperatura [*C]\n";
 	for (int i = 0; i < dane.size(); i++)
 	{
 		plik << dane[i];
 	}
 	plik.close();
+	}
+	else {
+		std::cout << "Nie otwarto pliku!"<<std::endl;
+	}
 };
