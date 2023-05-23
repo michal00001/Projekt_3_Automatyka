@@ -27,3 +27,11 @@ void Grzejnik::setpoziomMocy(float _poziom) {
 	}
 	else poziomMocy = _poziom;
 }
+
+void Grzejnik::setmocNominalna(float _moc){
+	if (_moc <= 0.0) {
+		std::cout << "Podano nieprawidlowa (za mala) moc\n";
+		mocNominalna = 1.0;
+	}
+	else mocNominalna = _moc;
+};

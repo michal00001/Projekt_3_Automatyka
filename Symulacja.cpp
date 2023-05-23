@@ -8,7 +8,7 @@ std::ostream& operator<<(std::ostream& out, Dane& dane) {
 Symulacja::Symulacja()
 	:czas(0.0),
 	pokoj(3.5, 10, 12),
-	ogrzewacz(5200, 0),
+	ogrzewacz(10000, 0),
 	regulator(nullptr)
 {};
 
@@ -23,8 +23,15 @@ void Symulacja::iteracja(float _deltaT=1.0)
 
 void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania) 
 {
+	try {
 	if (regulator == nullptr) throw "Nie dodano instancji regulatora!";
+	}
+	catch (const char*) {
+		std::cout << "Nie wybrano zadnego regulatora!" << std::endl;
+		return;
+	}
 	regulator->setGrzejnik(&ogrzewacz);
+
 	regulator->setPomieszczenie(&pokoj);
 
 	dane.reserve(_liczbaIteracji);
@@ -41,7 +48,7 @@ void Symulacja::przebieg(int _liczbaIteracji, float _czasProbkowania)
 		pokoj.dodajCieplo(ogrzewacz.wyemitowaneCieplo(_czasProbkowania));
 
 		std::cout <<"Czas:" << czas << " Cieplo wchodzace " << pokoj.getCieploWchodzace() << std::endl;
-		pokoj.aktualizuj(czas);
+		pokoj.aktualizuj(_czasProbkowania);
 		std::cout<<"Temperatura pomieszczenia " << pokoj.getTemperatura() << std::endl << std::endl;
 		
 		Dane wartosci(czas, pokoj.getTemperatura());
@@ -56,12 +63,12 @@ void Symulacja::zapis(char* _nazwaPliku)
 	std::locale pol("pl_PL");
 	plik.imbue(pol);
 	if(plik.good()){
-		plik << "Czas [s];Temperatura [*C]\n";
-	for (int i = 0; i < dane.size(); i++)
-	{
-		plik << dane[i];
-	}
-	plik.close();
+			plik << "Czas [s];Temperatura [*C]\n";
+		for (int i = 0; i < dane.size(); i++)
+		{
+			plik << dane[i];
+		}
+		plik.close();
 	}
 	else {
 		std::cout << "Nie otwarto pliku!"<<std::endl;

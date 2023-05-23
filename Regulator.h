@@ -8,7 +8,7 @@ class Regulator
 public:
 	Regulator() :grzejnik(nullptr), pomieszczenie(nullptr) {};
 	//_zadanaTemp - wartosc zadana temperatury, 
-	// //_zmierzonaTemp - wartoœæ zmierzonej w tej chwili temperatury, 
+	//_zmierzonaTemp - wartoœæ zmierzonej w tej chwili temperatury, 
 	//_dt - czas miêdzy pomiarami, "krok pomiarowy"
 //	virtual float steruj(float _zadanaTemp, float _zmierzonaTemp, float _dt) = 0;	
 	virtual void steruj(float _zadanaTemp, float _dt) = 0;

@@ -42,7 +42,8 @@ void RegulatorPID::steruj(float _zadanaTemp,float _dt) {
 	/*obliczanie uchybu - e*/
 	/**/
 	float e = _zadanaTemp - pomieszczenie->getTemperatura();
-
+	//std::cout << "Wartosc uchybu " << e << std::endl;
+	
 	/*obliczanie wartosci czesci proporcjonalnej*/
 	/**/
 	float Up = Kp * e;
@@ -52,12 +53,16 @@ void RegulatorPID::steruj(float _zadanaTemp,float _dt) {
 	e_calka =e_calka + e (uchyb)* deltaT
 	ui = Ki * e_calka*/
 	eCalka += e * _dt;
+	//std::cout << "Wartosc calki " << eCalka << std::endl;
+
 	float Ui = Ki * eCalka;
 
 	/*obliczanie wartosci czesci rozniczkujacej*/
 	/**/
 	float de = 0;
-	de = (e - ePoprzednie) / _dt;//dlaczego ePoprzednie jest niezdefiniowany
+	de = (e - ePoprzednie) / _dt;
+	//std::cout << "Wartosc rozniczki " << de << std::endl;
+
 	float Ud = Kd * de;
 
 	/*przypisanie wartosci uchybu jako poprzedni uchyb do dalszych obliczen regulatora*/

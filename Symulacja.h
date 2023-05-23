@@ -1,10 +1,11 @@
 #pragma once
 #include "Pomieszczenie.h"
 #include "Grzejnik.h"
+#include "Regulator.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "Regulator.h"
+
 
 
 class Dane
@@ -30,6 +31,7 @@ public:
 	void przebieg(int _liczbaIteracji, float _czasProbkowania);
 	void zapis(char* _nazwaPliku);
 	void setRegulator(Regulator* _regulator);
+
 private:
 	float czas;
 	Pomieszczenie pokoj;
