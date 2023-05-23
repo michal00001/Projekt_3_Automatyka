@@ -42,4 +42,5 @@ int main(void) {
 	pierwsza.przebieg(250, 1);
 	
 	pierwsza.zapis(nazwa);
+	delete regulator;
 }
